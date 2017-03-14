@@ -19,7 +19,7 @@ paginate:         5
 gems:             [jekyll-paginate]
 
 # Custom vars
-version:          2.0.0
+# version:          2.0.0
 
 github:
   repo:           https://github.com/willsbor
