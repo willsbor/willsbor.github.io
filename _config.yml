@@ -6,14 +6,14 @@ highlighter:         true
 permalink:        pretty
 
 # Setup
-title:            Hyde
+title:            黑程式
 tagline:          'A Jekyll theme'
-description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+description:      '不認真讀書的工程師'
 url:              https://willsbor.github.io/
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name:           'willsbor Kang'
+  url:            https://www.facebook.com/willsbor.kang
 
 paginate:         5
 gems:             [jekyll-paginate]
@@ -22,4 +22,4 @@ gems:             [jekyll-paginate]
 version:          2.0.0
 
 github:
-  repo:           https://github.com/poole/hyde
+  repo:           https://github.com/willsbor
