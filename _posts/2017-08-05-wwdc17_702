@@ -1,0 +1,33 @@
+---
+layout: post
+title: Privacy and Your Apps
+--- 
+
+- 使用 identifierForVendor 來觀察 app 內，對於一個功能行為 / 需要程度
+  - 而不會是用來觀察一個 user 的特定行為模式
+
+- 需要權限時，要添加的 description 要加到 Info.plist 中
+  - ex: location: `Info.plist: NSLocationUsageDescription`
+  - iOS 11 又增加/修改了三項
+    - Location
+    - Photos
+    - Write-only
+      - `NSPhotoLibraryAddUsageDescription`
+      - `UIImageWriteToSavedPhotosAlbum`
+      - `UISaveVideoAtPathToSavedPhotosAlbum`
+    - NFC
+  - Microphone - watchOS
+   - allowed to continue in the background
+
+- Safari View Controller
+  - Safari and other apps get `their own` cookies and website data
+    - 感覺應該像是 FB 登入的部分，就要重新登入了 orz
+
+- DeviceCheck
+  - Apple 可以針對一台手機 使用兩個 bits (2^2 四種狀態)來記錄這台裝置的狀況
+    - 像是想要知道
+      - 這台裝置之前是否有登入過
+      - 是不是已經有做過 free trial
+      - 是不是有連結其他付費的 account
+  - 需要透過自己的 server
+  
