@@ -13,7 +13,7 @@ title: iOS App Delegate
 
 如果從狀態來考慮
 應該會長的類似像這樣
-![AppDelegateState](https://willsbor.github.io/images/AppDelegateState.png =250x)
+![AppDelegateState](https://willsbor.github.io/images/AppDelegateState.png | width=250)
 
 大致上的概念是
 - 只要目前的狀態還沒有完成，也就不會馬上轉移狀態
