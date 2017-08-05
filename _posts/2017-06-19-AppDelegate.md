@@ -15,6 +15,9 @@ title: iOS App Delegate
 應該會長的類似像這樣
 ![AppDelegateState](https://willsbor.github.io/images/AppDelegateState.png | width=250)
 
+![test](https://github.com/favicon.ico | width=48)
+![test](https://github.com/favicon.ico =24x48)
+
 大致上的概念是
 - 只要目前的狀態還沒有完成，也就不會馬上轉移狀態
 - 當下狀態的工作完成後，會繼續檢查目前 app 實際要到達的狀態是否是現在的這個狀態，如果還沒有到達，則會依照規則前往
