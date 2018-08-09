@@ -251,15 +251,15 @@ class Foo {
 
 ## 最後
 
-這樣的思考流程，主要是希望能盡量符合單一職責原則 (SRP)，提升內聚力，降低耦合性。對 Foo 來說他知道各個物件 
+這樣的思考流程，主要是希望能盡量符合單一職責原則 (SRP)，提升內聚力，降低耦合性。對 `Foo` 來說他知道下面三個物件 
 
  - `StudentMemoryProvider` 
  - `StudentFileProvider` 
  - `SynchronizedStorageChain`
 
-把相依性放在這層，將他們設定、結合起來。
+把相依性放在這最上層，將他們設定、結合起來。
 
-`SynchronizedStorageChain` 只知道介面，所以並不相依於 memory or file system
+而 `SynchronizedStorageChain` 只知道介面，所以並不相依於 memory or file system
 
 這樣在測試會有比較簡單的切入點，並且在未來擴充功能時，可以分別考量每個介面要對應的物件改變，減低大規模的改變風險。
 
