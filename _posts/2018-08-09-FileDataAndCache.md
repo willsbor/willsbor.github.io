@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 變數資料與檔案儲存 (1/2)
+title: 變數資料與檔案儲存
 --- 
 
 思考一個常常遇到的問題：
@@ -11,26 +11,26 @@ title: 變數資料與檔案儲存 (1/2)
 
 ```
 struct Student: Codable {
-	var id: String
-	var name: String
-	var age: Int
+    var id: String
+    var name: String
+    var age: Int
 }
 
 class Foo {
-	let filePath = "path/to/file"
-	var currentStudent: Student? {
-		get {
-			let decoder = JSONDecoder()
-			let data = Data(contentsOfFile: filePath)
-			return = try? decoder.decode(Student.self, from: data)
+    let filePath = "path/to/file"
+    var currentStudent: Student? {
+        get {
+            let decoder = JSONDecoder()
+            let data = Data(contentsOfFile: filePath)
+            return = try? decoder.decode(Student.self, from: data)
 
-		}
-		set {
-			let encoder = JSONEncoder()
-			let data = try? encoder.encode(newValue)
-			data.write(to: URL(fileURLWithPath: filePath))
-		}
-	}
+        }
+        set {
+            let encoder = JSONEncoder()
+            let data = try? encoder.encode(newValue)
+            data.write(to: URL(fileURLWithPath: filePath))
+        }
+    }
 }
 ```
 
@@ -41,27 +41,27 @@ Cool!
 
 ```
 struct Student: Codable {
-	var id: String
-	var name: String
-	var age: Int
+    var id: String
+    var name: String
+    var age: Int
 }
 
 class Foo {
-	let filePath = "path/to/file"
+    let filePath = "path/to/file"
 
     var currentStudent: Student?
 
-	func load() {
-		let decoder = JSONDecoder()
-		let data = Data(contentsOfFile: filePath)
-		currentStudent = try? decoder.decode(Student.self, from: data)
-	}
+    func load() {
+        let decoder = JSONDecoder()
+        let data = Data(contentsOfFile: filePath)
+        currentStudent = try? decoder.decode(Student.self, from: data)
+    }
 
-	func save() {
-		let encoder = JSONEncoder()
-		let data = try? encoder.encode(currentStudent)
-		data.write(to: URL(fileURLWithPath: filePath))
-	}
+    func save() {
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(currentStudent)
+        data.write(to: URL(fileURLWithPath: filePath))
+    }
 }
 ```
 
@@ -77,33 +77,33 @@ class Foo {
 
 ```
 struct Student: Codable {
-	var id: String
-	var name: String
-	var age: Int
+    var id: String
+    var name: String
+    var age: Int
 }
 
 class Foo {
-	let filePath = "path/to/file"
+    let filePath = "path/to/file"
 
-	var studentData = DiskCacheProvider<Student>()
+    var studentData = DiskCacheProvider<Student>()
     var currentStudent: Student? {
-    	get {
-    		return studentData.getValue()
-    	}
-    	set {
-    		studentData.setValue(newValue)
-    	}
+        get {
+            return studentData.getValue()
+        }
+        set {
+            studentData.setValue(newValue)
+        }
     }
 }
 
 class DiskCacheProvider<T> {
-	func getValue() -> T {
+    func getValue() -> T {
 
-	}
+    }
 
-	func setValue(_ newValue: T) {
+    func setValue(_ newValue: T) {
 
-	}
+    }
 }
 ```
 
@@ -230,20 +230,20 @@ class StudentFileProvider: SynchronizedDataProviding {
 }
 
 class Foo {
-	let filePath = "path/to/file"
+    let filePath = "path/to/file"
 
     var memoryProvider = StudentMemoryProvider
     var fileProvider = StudentFileProvider()
-	var studentData
-	 = SynchronizedStorageChain<StudentMemoryProvider, StudentFileProvider>(memoryProvider, underlyingProvider: fileProvider)
+    var studentData
+     = SynchronizedStorageChain<StudentMemoryProvider, StudentFileProvider>(memoryProvider, underlyingProvider: fileProvider)
 
     var currentStudent: Student {
-    	get {
-    		return try! studentData.getValue()
-    	}
-    	set {
-    		try! studentData.setValue(newValue)
-    	}
+        get {
+            return try! studentData.getValue()
+        }
+        set {
+            try! studentData.setValue(newValue)
+        }
     }
 }
 
