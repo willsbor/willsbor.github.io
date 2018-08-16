@@ -9,7 +9,7 @@ title: 變數資料與檔案儲存
 
 先用很直覺的方式處理它
 
-```
+```swift
 struct Student: Codable {
     var id: String
     var name: String
@@ -39,7 +39,7 @@ Cool!
 但是一般來說，這個如果資料常常被讀取，被修改的機會比較少，我們通常不會這樣寫。加上如果只考慮單一 process 使用時，可能只要考慮開始結束儲存就好了
 
 
-```
+```swift
 struct Student: Codable {
     var id: String
     var name: String
@@ -77,7 +77,7 @@ class Foo {
 
 對最上層的物件 Foo 來說，其實他根本不關心資料是怎麼來的，他只要能存取到一個 student 的資料就行了。因此，我們可以用這個概念，將功能先分開。
 
-```
+```swift
 struct Student: Codable {
     var id: String
     var name: String
@@ -128,7 +128,7 @@ class DiskCacheProvider<T> {
 
 可以設計成：
 
-```
+```swift
 public protocol SynchronizedDataProviding: class {
     associatedtype Value
         
@@ -146,7 +146,7 @@ public protocol SynchronizedDataProviding: class {
 
 所以可以設計成下面的狀況：
 
-```
+```swift
 public class SynchronizedStorageChain<MainProvider: SynchronizedDataProviding, UnderlyingProvider: SynchronizedDataProviding> where MainProvider.Value == UnderlyingProvider.Value {
     
     public let provider: MainProvider
@@ -186,7 +186,7 @@ public class SynchronizedStorageChain<MainProvider: SynchronizedDataProviding, U
 
 所以最後可以設計成：
 
-```
+```swift
 public protocol SynchronizedDataProviding: class {
     associatedtype Value
     
@@ -200,7 +200,7 @@ public protocol SynchronizedDataProviding: class {
 
 而流程面實作可以寫成：
 
-```
+```swift
 public class SynchronizedStorageChain<MainProvider: SynchronizedDataProviding, UnderlyingProvider: SynchronizedDataProviding> where MainProvider.Value == UnderlyingProvider.Value {
     
     ...
@@ -217,7 +217,7 @@ public class SynchronizedStorageChain<MainProvider: SynchronizedDataProviding, U
 
 最後實際應用會長成下面這個樣子：
 
-```
+```swift
 class StudentMemoryProvider: SynchronizedDataProviding {
     typealias Value = Student
     private var value: Student
