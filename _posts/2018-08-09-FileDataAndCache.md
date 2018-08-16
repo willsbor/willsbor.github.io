@@ -9,7 +9,7 @@ title: 變數資料與檔案儲存
 
 先用很直覺的方式處理它
 
-```swift
+{% highlight swift linenos %}
 struct Student: Codable {
     var id: String
     var name: String
@@ -32,7 +32,7 @@ class Foo {
         }
     }
 }
-```
+{% endhighlight %}
 
 Cool!
 
