@@ -39,7 +39,7 @@ Cool!
 但是一般來說，這個如果資料常常被讀取，被修改的機會比較少，我們通常不會這樣寫。加上如果只考慮單一 process 使用時，可能只要考慮開始結束儲存就好了
 
 
-```swift
+{% highlight swift linenos %}
 struct Student: Codable {
     var id: String
     var name: String
@@ -63,7 +63,7 @@ class Foo {
         data.write(to: URL(fileURLWithPath: filePath))
     }
 }
-```
+{% endhighlight %}
 
 `save()` `load()` 分別在 launch 和 terminate 的時候呼叫就好了
 
@@ -77,7 +77,7 @@ class Foo {
 
 對最上層的物件 Foo 來說，其實他根本不關心資料是怎麼來的，他只要能存取到一個 student 的資料就行了。因此，我們可以用這個概念，將功能先分開。
 
-```swift
+{% highlight swift linenos %}
 struct Student: Codable {
     var id: String
     var name: String
@@ -107,7 +107,7 @@ class DiskCacheProvider<T> {
 
     }
 }
-```
+{% endhighlight %}
 
 這樣 `DiskCacheProvider` 只要負責「資料提供的邏輯和方法」。
 
@@ -128,7 +128,7 @@ class DiskCacheProvider<T> {
 
 可以設計成：
 
-```swift
+{% highlight swift linenos %}
 public protocol SynchronizedDataProviding: class {
     associatedtype Value
         
@@ -136,7 +136,7 @@ public protocol SynchronizedDataProviding: class {
     
     func setValue(_ value: Value) throws
 }
-```
+{% endhighlight %}
 
 這裡用 `Synchronized` 是先考量 memory or file 之類的實作體，網路需要等待的介面先不考慮
 
@@ -146,7 +146,7 @@ public protocol SynchronizedDataProviding: class {
 
 所以可以設計成下面的狀況：
 
-```swift
+{% highlight swift linenos %}
 public class SynchronizedStorageChain<MainProvider: SynchronizedDataProviding, UnderlyingProvider: SynchronizedDataProviding> where MainProvider.Value == UnderlyingProvider.Value {
     
     public let provider: MainProvider
@@ -174,7 +174,7 @@ public class SynchronizedStorageChain<MainProvider: SynchronizedDataProviding, U
         self.underlyingProvider = underlyingProvider
     }
 }
-```
+{% endhighlight %}
 
 可以看到 `setValue` 描述了當要設定過數值，除了儲存到 Main Provider，也會儲存到 Underlying Provider。
 
@@ -186,7 +186,7 @@ public class SynchronizedStorageChain<MainProvider: SynchronizedDataProviding, U
 
 所以最後可以設計成：
 
-```swift
+{% highlight swift linenos %}
 public protocol SynchronizedDataProviding: class {
     associatedtype Value
     
@@ -196,11 +196,11 @@ public protocol SynchronizedDataProviding: class {
 
     func setValue(_ value: Value) throws
 }
-```
+{% endhighlight %}
 
 而流程面實作可以寫成：
 
-```swift
+{% highlight swift linenos %}
 public class SynchronizedStorageChain<MainProvider: SynchronizedDataProviding, UnderlyingProvider: SynchronizedDataProviding> where MainProvider.Value == UnderlyingProvider.Value {
     
     ...
@@ -213,11 +213,11 @@ public class SynchronizedStorageChain<MainProvider: SynchronizedDataProviding, U
         }
     }
 }
-```
+{% endhighlight %}
 
 最後實際應用會長成下面這個樣子：
 
-```swift
+{% highlight swift linenos %}
 class StudentMemoryProvider: SynchronizedDataProviding {
     typealias Value = Student
     private var value: Student
@@ -251,7 +251,7 @@ class Foo {
     }
 }
 
-```
+{% endhighlight %}
 
 ---------------------------------------
 

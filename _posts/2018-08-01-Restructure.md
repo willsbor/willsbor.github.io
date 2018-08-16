@@ -25,7 +25,7 @@ title: Restructure 思考脈絡 (1)
 
 對多個來源 `sources`，透過 `mergedData()` 產生一個合併過後的資料
 
-```
+{% highlight swift linenos %}
 protocol DataType {
     func adding(_ data: DataType) -> DataType
 }
@@ -48,7 +48,7 @@ class DataLoader<T: DataType> {
         return result
     }
 }
-```
+{% endhighlight %}
 
 ------
 
@@ -64,7 +64,7 @@ class DataLoader<T: DataType> {
 
 因此透過讀檔案的方式，將多筆資料讀出後，再依序交給呼叫者處理
 
-```
+{% highlight swift linenos %}
 protocol DataType {
     associatedtype RowData
     
@@ -105,7 +105,7 @@ class DataLoader<T: DataType> {
         }
     }
 }
-```
+{% endhighlight %}
 
 ------
 
@@ -124,7 +124,7 @@ sort and merge 的演算法則是先定義一個框架 `getMinRowData() -> T.Row
 
 主要是 `readMergedData` 能夠符合最外層邏輯的期待
 
-```
+{% highlight swift linenos %}
 protocol RowDataType: Comparable {
     
 }
@@ -182,7 +182,7 @@ class DataLoader<T: DataType> {
         return false
     }
 }
-```
+{% endhighlight %}
 
 
 (待續...)
