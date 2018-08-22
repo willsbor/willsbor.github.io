@@ -185,4 +185,4 @@ class DataLoader<T: DataType> {
 {% endhighlight %}
 
 
-下一篇： [Restructure 思考脈絡 2](2018-08-01-Restructure-2.md)
+下一篇： [Restructure 思考脈絡 2](2018-08-22-Restructure-2.md)
