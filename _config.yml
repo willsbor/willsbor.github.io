@@ -34,7 +34,7 @@ paginate: 3
 
 relative_links:
   enabled:     true
-  collections: false
+  collections: true
 
 highlighter: rouge
 markdown: kramdown
