@@ -23,7 +23,7 @@ title: Restructure 思考脈絡 (2)
 
 1. 每個資料來源(source)都應該有有提供各自的增減資料
 2. 匯入時再合併增加/刪減的資料
-3. 增加是_增加沒有的資料_，刪除是_刪除上次存在的資料_，如果對*同一個號碼*在不同 source 中有增加或刪除，那應該要保留增加的指令
+3. 增加是__增加沒有的資料__，刪除是__刪除上次存在的資料__，如果對**同一個號碼**在不同 source 中有增加或刪除，那應該要保留增加的指令
 
 先來思考 source 提供的面向，要增加一個描述 `RowDataOperation` 來告訴 `DataLoader` 資料是增還是刪。開啟 source 時，要告訴他這次要拿的資料形式是 `全拿(full)` 還是 `差異資料(diff)`
 
@@ -55,11 +55,11 @@ protocol SortedDataSource {
 
 接著看 `DataLoader` 如何應用 source
 
-method `readMergedData(...)` 提供了資供資料的輸入參數。
+- method `readMergedData(...)` 提供了資供資料的輸入參數。
 
-原本的 `getMinRowData()` 也因為 .full 和 .diff 模式的不同，所以分開成兩個動作：
-1. `getMinRowDataSet()`：綜合各個 Source，且依據 source 的排序，拿取目前*所有*數值最小的 RowData
-2. 取用這群 (Set) 資料的策略，則交由 `DataProvidingMode` 來決定。這裡用 `extesion Array where ... `來實作
+- 原本的 `getMinRowData()` 也因為 .full 和 .diff 模式的不同，所以分開成兩個動作：
+  1. `getMinRowDataSet()`：綜合各個 Source，且依據 source 的排序，拿取目前*所有*數值最小的 RowData
+  2. 取用這群 (Set) 資料的策略，則交由 `DataProvidingMode` 來決定。這裡用 `extesion Array where ... `來實作
 
 {% highlight swift linenos %}
 class DataLoader<T: SortedDataSource> {

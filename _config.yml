@@ -32,6 +32,10 @@ disqus: ''
 permalink: /:year/:month/:title
 paginate: 3
 
+relative_links:
+  enabled:     true
+  collections: false
+
 highlighter: rouge
 markdown: kramdown
 gems: ['jekyll-paginate']
