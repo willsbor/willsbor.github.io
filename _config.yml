@@ -38,6 +38,6 @@ relative_links:
 
 highlighter: rouge
 markdown: kramdown
-gems: ['jekyll-paginate']
+gems: ['jekyll-paginate', 'jekyll-relative-links']
 
 exclude: ['README.md', 'LICENSE']
