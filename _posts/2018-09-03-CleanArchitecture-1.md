@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 筆記心得- Clean Architecture 無瑕的程式碼 (0)
+title: 筆記心得 Clean Architecture 無瑕的程式碼 0
 --- 
 
 上週老爸老媽來幫忙小朋友開學，無暇記錄一些東西。

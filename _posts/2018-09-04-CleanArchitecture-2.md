@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [筆記心得] Clean Architecture 無瑕的程式碼 (1)
+title: 筆記心得 Clean Architecture 無瑕的程式碼 1
 --- 
 
 # 第一章：什麼是設計與結構
