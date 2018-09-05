@@ -41,5 +41,9 @@ Clean Architecture 這本七月初買到現在，才看了一半。不過時間�
 
 待續...
 
+第一章： [什麼是設計與結構](2018-09-03-CleanArchitecture-2.md)
+第二章： [兩種價值觀的故事](2018-09-05-CleanArchitecture-3.md)
+
+
 btw 這個譯者我覺得翻得還不錯，一些編註的部分講得很仔細！
 
