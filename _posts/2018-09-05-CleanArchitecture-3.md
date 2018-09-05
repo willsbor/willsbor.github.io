@@ -75,4 +75,4 @@ title: 筆記心得 Clean Architecture 無瑕的程式碼 2
 不過身為想要成為架構師的我，或許該重新來堅持必要的東西。
 ```
 
-第一章： [什麼是設計與結構](2018-09-03-CleanArchitecture-2.md)
+第一章： [什麼是設計與結構](2018-09-04-CleanArchitecture-2.md)
