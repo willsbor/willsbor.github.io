@@ -5,17 +5,19 @@ title: Clean Architecture [3. 範式概述]
 
 # 範式概述
 
-三種範式。可以特別注意到等下描述的範式：
+##三種範式
+
+可以特別注意到等下描述的範式：
 
 > 從程式設計師那邊移除了一些功能，被沒有增加什麼新的功能，是消極性的增加規範，告訴我們「不該」做什麼，而不是告訴我們「該」做什麼。
 
-## 結構化程式設計 (structured programming)
+### 結構化程式設計 (structured programming)
 
 使用為人所知的 if/then/else 和 go/while/until 來建構程式，取代 goto
 
 > 結構化程式設計在直接的控制轉移上加上規範
 
-## 物件導向程式設計 (object-orient programming)
+### 物件導向程式設計 (object-orient programming)
 
 從呼叫函式所設計的堆疊框架(stack frame)，移動到一個 heap 中。
 
@@ -29,7 +31,7 @@ title: Clean Architecture [3. 範式概述]
 
 > 物件導向程式設計在間接地控制轉移上加上規範
 
-## 函數式程式設計 (functional programming)
+### 函數式程式設計 (functional programming)
 
 從 l-calculus 出發，成為 LISP 語言的基礎。l-calculus 的基礎概念是不變性 (immutability)，也就是說，符號的值不會改變。而函數式語言大部分都有一些方法可以改變變數值，但只能在嚴格的條件下
 
