@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 筆記心得 Clean Architecture 無瑕的程式碼 2
+title: Clean Architecture [2. 兩種價值觀的故事]
 --- 
 
 # 兩種價值觀的故事
@@ -76,3 +76,5 @@ title: 筆記心得 Clean Architecture 無瑕的程式碼 2
 ```
 
 第一章： [什麼是設計與結構](2018-09-04-CleanArchitecture-2.md)
+
+第三章： [範式概述](2018-09-04-CleanArchitecture-4.md)

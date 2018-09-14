@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 筆記心得 Clean Architecture 無瑕的程式碼 3
+title: Clean Architecture [3. 範式概述]
 --- 
 
 # 範式概述
