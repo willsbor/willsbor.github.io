@@ -53,3 +53,5 @@ title: Clean Architecture [3. 範式概述]
 ```
 
 第二章： [兩種價值觀的故事](2018-09-05-CleanArchitecture-3.md)
+
+第四章： [結構化程式設計](2018-10-04-CleanArchitecture-5.md)

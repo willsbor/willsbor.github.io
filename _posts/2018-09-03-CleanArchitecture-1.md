@@ -47,6 +47,7 @@ Clean Architecture 這本七月初買到現在，才看了一半。不過時間�
 
 第三章： [範式概述](2018-09-04-CleanArchitecture-4.md)
 
+第四章： [結構化程式設計](2018-10-04-CleanArchitecture-5.md)
 
 btw 這個譯者我覺得翻得還不錯，一些編註的部分講得很仔細！
 
