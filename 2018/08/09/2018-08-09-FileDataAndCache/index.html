@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Note about programming, iOS, swift and software engineering">
+    <meta name="keyword"  content="iOS, swift, SOLID, testing">
+    <!-- <link rel="shortcut icon" href="/img/ironman-draw.png"> -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          變數資料與檔案儲存 - ThinkAboutProgramming | 想起程式
+        
+    </title>
+
+    <link rel="canonical" href="https://willsbor.github.io/2018/08/09/2018-08-09-FileDataAndCache/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('../../../../img/pexels-photo-302280.jpeg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#system analysis" title="system analysis">system analysis</a>
+                            
+                              <a class="tag" href="/tags/#system design" title="system design">system design</a>
+                            
+                        </div>
+                        <h1>變數資料與檔案儲存</h1>
+                        <h2 class="subheading">變數資料與檔案儲存</h2>
+                        <span class="meta">
+                            Posted by willsbor Kang on
+                            2018-08-09
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">想起程式</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>思考一個常常遇到的問題：</p>
+<blockquote>
+<p>物件中有一個變數資料，當下次再開啟 app 時，需要是上次的數值</p>
+</blockquote>
+<p>先用很直覺的方式處理它</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">struct Student: Codable &#123;</span><br><span class="line">    <span class="built_in">var</span> id: <span class="built_in">String</span></span><br><span class="line">    <span class="built_in">var</span> name: <span class="built_in">String</span></span><br><span class="line">    <span class="built_in">var</span> age: Int</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Foo &#123;</span><br><span class="line">    <span class="keyword">let</span> filePath = <span class="string">"path/to/file"</span></span><br><span class="line">    <span class="built_in">var</span> currentStudent: Student? &#123;</span><br><span class="line">        get &#123;</span><br><span class="line">            <span class="keyword">let</span> decoder = JSONDecoder()</span><br><span class="line">            <span class="keyword">let</span> <span class="built_in">data</span> = <span class="built_in">Data</span>(contentsOfFile: filePath)</span><br><span class="line">            <span class="keyword">return</span> = try? decoder.decode(Student.<span class="built_in">self</span>, from: <span class="built_in">data</span>)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">set</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> encoder = JSONEncoder()</span><br><span class="line">            <span class="keyword">let</span> <span class="built_in">data</span> = try? encoder.encode(newValue)</span><br><span class="line">            <span class="built_in">data</span>.write(<span class="keyword">to</span>: URL(fileURLWithPath: filePath))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Cool!</p>
+<p>但是一般來說，這個如果資料常常被讀取，被修改的機會比較少，我們通常不會這樣寫。加上如果只考慮單一 process 使用時，可能只要考慮開始結束儲存就好了</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span>: <span class="title">Codable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> filePath = <span class="string">"path/to/file"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> currentStudent: <span class="type">Student</span>?</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">load</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> decoder = <span class="type">JSONDecoder</span>()</span><br><span class="line">        <span class="keyword">let</span> data = <span class="type">Data</span>(contentsOfFile: filePath)</span><br><span class="line">        currentStudent = <span class="keyword">try</span>? decoder.decode(<span class="type">Student</span>.<span class="keyword">self</span>, from: data)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">save</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> encoder = <span class="type">JSONEncoder</span>()</span><br><span class="line">        <span class="keyword">let</span> data = <span class="keyword">try</span>? encoder.encode(currentStudent)</span><br><span class="line">        data.write(to: <span class="type">URL</span>(fileURLWithPath: filePath))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>save()</code> <code>load()</code> 分別在 launch 和 terminate 的時候呼叫就好了</p>
+<hr>
+<h2><span id="分開資料被使用的邏輯和提供資料的方法">分開「資料被使用的邏輯」和「提供資料的方法」</span></h2>
+<p>回過頭來，上面的問題換個方式說</p>
+<blockquote>
+<p>app 內有一個 memory cache，當下層的 file 資料沒有變化時，都會拿取 cache，當 file 資料變化時，就會通知 memory 更新; 如果 memory cache 資料有變化，也會寫道 file 中。</p>
+</blockquote>
+<p>對最上層的物件 Foo 來說，其實他根本不關心資料是怎麼來的，他只要能存取到一個 student 的資料就行了。因此，我們可以用這個概念，將功能先分開。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span>: <span class="title">Codable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> id: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> filePath = <span class="string">"path/to/file"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> studentData = <span class="type">DiskCacheProvider</span>&lt;<span class="type">Student</span>&gt;()</span><br><span class="line">    <span class="keyword">var</span> currentStudent: <span class="type">Student</span>? &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> studentData.getValue()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123;</span><br><span class="line">            studentData.setValue(newValue)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DiskCacheProvider</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getValue</span><span class="params">()</span></span> -&gt; <span class="type">T</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> newValue: T)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這樣 <code>DiskCacheProvider</code> 只要負責「資料提供的邏輯和方法」。</p>
+<hr>
+<h2><span id="再細分資料提供的邏輯和方法">再細分「資料提供的邏輯和方法」</span></h2>
+<p>仔細想想 <code>DiskCacheProvider</code> 要做什麼事情</p>
+<ul>
+<li>何時存取 Cache / File 的邏輯</li>
+<li>存取 Cache 資料的方法</li>
+<li>存取 File 資料的方法</li>
+</ul>
+<p>至少需要上面的幾個事情才能做到整個功能。</p>
+<p><code>存取 Cache / File 資料的方法</code> 可以分別獨立來實作。在實作前，先將概念再抽取出來：</p>
+<blockquote>
+<p>一個有拿取數值和儲存數值的抽象介面</p>
+</blockquote>
+<p>可以設計成：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">SynchronizedDataProviding</span>: <span class="title">class</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">Value</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getValue</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Value</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Value)</span></span> <span class="keyword">throws</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這裡用 <code>Synchronized</code> 是先考量 memory or file 之類的實作體，網路需要等待的介面先不考慮</p>
+<p><code>何時取用 Cache / File 的邏輯</code> 可以看作是：</p>
+<blockquote>
+<p>何時存取 [資料來源1] or [資料來源2] 的邏輯</p>
+</blockquote>
+<p>所以可以設計成下面的狀況：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SynchronizedStorageChain</span>&lt;<span class="title">MainProvider</span>: <span class="title">SynchronizedDataProviding</span>, <span class="title">UnderlyingProvider</span>: <span class="title">SynchronizedDataProviding</span>&gt; <span class="title">where</span> <span class="title">MainProvider</span>.<span class="title">Value</span> == <span class="title">UnderlyingProvider</span>.<span class="title">Value</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> provider: <span class="type">MainProvider</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">let</span> underlyingProvider: <span class="type">UnderlyingProvider</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> isUnderlyingProviderBeUpdated = <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">getValue</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">MainProvider</span>.<span class="type">Value</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> isUnderlyingProviderBeUpdated, <span class="keyword">let</span> underlyingProvider = underlyingProvider &#123;</span><br><span class="line">            <span class="keyword">let</span> newValue = <span class="keyword">try</span> underlyingProvider.getValue()</span><br><span class="line">            valueBeModifiedHandler?(newValue)</span><br><span class="line">            <span class="keyword">try</span> provider.setValue(newValue)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">try</span> provider.getValue()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: MainProvider.Value)</span></span> <span class="keyword">throws</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> provider.setValue(value)</span><br><span class="line">        <span class="keyword">try</span> underlyingProvider?.setValue(value)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(<span class="number">_</span> provider: <span class="type">MainProvider</span>, underlyingProvider: <span class="type">UnderlyingProvider</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.provider = provider</span><br><span class="line">        <span class="keyword">self</span>.underlyingProvider = underlyingProvider</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到 <code>setValue</code> 描述了當要設定過數值，除了儲存到 Main Provider，也會儲存到 Underlying Provider。</p>
+<p><code>getValue</code> 描述：如果 Underlying Provider 資料有變化，則會讀取 underlying 的資料，更新 main provider。</p>
+<p>接著就要處理 <code>isUnderlyingProviderBeUpdated</code> 何時會被變動的問題了。</p>
+<p>意思是 underlyingProvider 所屬的型態 SynchronizedDataProviding 應該要能告知物件變數該改變了。</p>
+<p>所以最後可以設計成：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">SynchronizedDataProviding</span>: <span class="title">class</span> </span>&#123;</span><br><span class="line">    associatedtype <span class="type">Value</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> valueBeModifiedHandler: ((<span class="number">_</span> newValue: <span class="type">Value</span>) -&gt; <span class="type">Void</span>)? &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getValue</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Value</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Value)</span></span> <span class="keyword">throws</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而流程面實作可以寫成：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SynchronizedStorageChain</span>&lt;<span class="title">MainProvider</span>: <span class="title">SynchronizedDataProviding</span>, <span class="title">UnderlyingProvider</span>: <span class="title">SynchronizedDataProviding</span>&gt; <span class="title">where</span> <span class="title">MainProvider</span>.<span class="title">Value</span> == <span class="title">UnderlyingProvider</span>.<span class="title">Value</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(<span class="number">_</span> provider: <span class="type">MainProvider</span>, underlyingProvider: <span class="type">UnderlyingProvider</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.provider = provider</span><br><span class="line">        <span class="keyword">self</span>.underlyingProvider = underlyingProvider</span><br><span class="line">        <span class="keyword">self</span>.underlyingProvider?.valueBeModifiedHandler = &#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] (<span class="number">_</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">self</span>.isUnderlyingProviderBeUpdated = <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最後實際應用會長成下面這個樣子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentMemoryProvider</span>: <span class="title">SynchronizedDataProviding</span> </span>&#123;</span><br><span class="line">    <span class="keyword">typealias</span> <span class="type">Value</span> = <span class="type">Student</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> value: <span class="type">Student</span></span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentFileProvider</span>: <span class="title">SynchronizedDataProviding</span> </span>&#123;</span><br><span class="line">    <span class="keyword">typealias</span> <span class="type">Value</span> = <span class="type">Student</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> fileManager: <span class="type">FileManager</span></span><br><span class="line">    <span class="keyword">let</span> filePath = <span class="string">"path/to/file"</span></span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> filePath = <span class="string">"path/to/file"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> memoryProvider = <span class="type">StudentMemoryProvider</span></span><br><span class="line">    <span class="keyword">var</span> fileProvider = <span class="type">StudentFileProvider</span>()</span><br><span class="line">    <span class="keyword">var</span> studentData</span><br><span class="line">     = <span class="type">SynchronizedStorageChain</span>&lt;<span class="type">StudentMemoryProvider</span>, <span class="type">StudentFileProvider</span>&gt;(memoryProvider, underlyingProvider: fileProvider)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> currentStudent: <span class="type">Student</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">try</span>! studentData.getValue()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123;</span><br><span class="line">            <span class="keyword">try</span>! studentData.setValue(newValue)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2><span id="最後">最後</span></h2>
+<p>這樣的思考流程，主要是希望能盡量符合單一職責原則 (SRP)，提升內聚力，降低耦合性。對 <code>Foo</code> 來說他知道下面三個物件</p>
+<ul>
+<li><code>StudentMemoryProvider</code></li>
+<li><code>StudentFileProvider</code></li>
+<li><code>SynchronizedStorageChain</code></li>
+</ul>
+<p>把相依性放在這最上層，將他們設定、結合起來。</p>
+<p>而 <code>SynchronizedStorageChain</code> 只知道介面，所以並不相依於 memory or file system</p>
+<p>這樣在測試會有比較簡單的切入點，並且在未來擴充功能時，可以分別考量每個介面要對應的物件改變，減低大規模的改變風險。</p>
+<p>目前這個架構放在 <a href="https://github.com/willsbor/SynchronizedStorageChain" target="_blank" rel="noopener">SynchronizedStorageChain</a> 有興趣可以去看看！</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/08/22/2018-08-22-Restructure-2/" data-toggle="tooltip" data-placement="top" title="Restructure 思考脈絡 (2)">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/08/01/2018-08-01-Restructure/" data-toggle="tooltip" data-placement="top" title="Restructure 思考脈絡 (1)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">分開「資料被使用的邏輯」和「提供資料的方法」</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">再細分「資料提供的邏輯和方法」</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">最後</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#system analysis" title="system analysis">system analysis</a>
+                        
+                          <a class="tag" href="/tags/#system design" title="system design">system design</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "willsborkang";
+    var disqus_identifier = "https://willsbor.github.io/2018/08/09/2018-08-09-FileDataAndCache/";
+    var disqus_url = "https://willsbor.github.io/2018/08/09/2018-08-09-FileDataAndCache/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/WillsborK">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/willsbor.kang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/willsbor">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/willsbor-kang-82784061">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; willsbor Kang 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://willsbor.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://willsbor.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
