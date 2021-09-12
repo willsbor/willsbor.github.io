@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Note about programming, iOS, swift and software engineering">
+    <meta name="keyword"  content="iOS, swift, SOLID, testing">
+    <!-- <link rel="shortcut icon" href="/img/ironman-draw.png"> -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          ThinkAboutProgramming | 想起程式
+        
+    </title>
+
+    <link rel="canonical" href="https://willsbor.github.io/archives/2/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/header_img/pexels-photo-824161.jpeg') 
+            /*config*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="site-heading">
+                        <h1>想起程式</h1>
+                        <!--<hr class="small">-->
+                        <span class="subheading">人是一根會思考的蘆葦</span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">想起程式</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2019/02/21/2019-02-21-CleanArchitecture-8/">
+        <h2 class="post-title">
+            Part III. 設計原則
+        </h2>
+        <h3 class="post-subtitle">
+            整潔的程式碼 (clean code) 之下，也有可能會製造大量的垃圾！？
+        </h3>
+        <div class="post-content-preview">
+            設計原則
+整潔的程式碼 (clean code) 是軟體的基礎。如果這個磚塊做得不好，那麼建築物的架構就不是那麼重要了。但是即時有好的磚塊，也是可能會製造大量的垃圾，這時就是 SOLID 的原則發揮的場所了
+不過我自己是覺得「形」比較重要。如果考量的是能夠容忍變化的條件，而且還有時程上的壓力時，那麼保有好的「形」，才有機會在未來替換掉不好的部分。但兩者能兼顧是最好拉！
+SOLID 的原則告訴......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2019-02-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/02/14/2019-02-14-CleanArchitecture-7/">
+        <h2 class="post-title">
+            6. 函數式程式設計
+        </h2>
+        <h3 class="post-subtitle">
+            變數賦值上加上規範
+        </h3>
+        <div class="post-content-preview">
+            函數式程式設計
+一句令人驚訝的話：
+
+函數式語言中的變數不會改變 (do not vary)
+
+列印前 25 個整數的平方
+比較一下 Clojure 程式和 Java 程式之間的差異
+
+Java
+
+123456public class Squint &#123;	public static void main(String args[]) &#123;		for (int i=0; i&lt......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2019-02-14
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/12/08/2018-12-08-ArchitectureDesign/">
+        <h2 class="post-title">
+            程式碼的維護
+        </h2>
+        <h3 class="post-subtitle">
+            重新學習
+        </h3>
+        <div class="post-content-preview">
+            為什麼要這樣寫？
+某日下午，和同事討論了一下我發的 PR 內容。
+「看程式碼，我是能理解你想要幹嘛，不過『未來維護的人』看得懂嗎？」這樣說道…
+「你這樣設計未來可能會發生…的問題」
+每種設計方式都有他的問題，還有可能是相同的問題
+我的程式理念，慢慢的往依賴能切分乾淨靠近，但是相對於 structured programming 的直覺使用，依賴反轉過後，尋找實際實作者時，往往會出現難以接受的......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2018-12-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#life" title="life">life</a>
+            
+              <a href="/tags/#programming" title="programming">programming</a>
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/11/29/2018-11-29-CleanArchitecture-6/">
+        <h2 class="post-title">
+            5. 物件導向程式設計
+        </h2>
+        <h3 class="post-subtitle">
+            間接控制移轉上加上規範
+        </h3>
+        <div class="post-content-preview">
+            物件導向程式設計
+物件導向(OO)什麼？
+
+封裝 (encapsulation)、繼承 (inheritance) 和多型 (polymorphism) 這三件事情以適當的方式合成的產物，或者至少 OO 語言必須支援這三件事
+
+封裝
+C 語言中也有完美的封裝。
+point.h
+123struct Point;struct Point* makePoint(double x, double y......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2018-11-29
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/10/04/2018-10-04-CleanArchitecture-5/">
+        <h2 class="post-title">
+            4. 結構化程式設計
+        </h2>
+        <h3 class="post-subtitle">
+            直接控制移轉上加上規範
+        </h3>
+        <div class="post-content-preview">
+            結構化程式設計
+Dijlstra 很早就認識到程式設計是困難的，任何複雜的城市都包含太多細節，人腦無法幫忙管理。Dijlstra 的解決方案是運用數學原理的證明 (proof)。認為可以像數學家那樣使用層次結構來證明程式是對的。他發現 goto 語句的某些使用方式會阻止模組遞迴地被分解成越來越小的單元，會導致無法使用分而治之 (divide-and-conquer) 的方法來進行合理的證明。......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2018-10-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/09/14/2018-09-14-CleanArchitecture-4/">
+        <h2 class="post-title">
+            3. 範式概述
+        </h2>
+        <h3 class="post-subtitle">
+            範式的歷史與架構是所有的一切
+        </h3>
+        <div class="post-content-preview">
+            範式概述
+三種範式
+可以特別注意到等下描述的範式：
+
+從程式設計師那邊移除了一些功能，並沒有增加什麼新的功能，是消極性的增加規範，告訴我們「不該」做什麼，而不是告訴我們「該」做什麼。
+
+結構化程式設計 (structured programming)
+使用為人所知的 if/then/else 和 go/while/until 來建構程式，取代 goto
+
+結構化程式設計在直接的控制轉移上加上......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2018-09-14
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/09/05/2018-09-05-CleanArchitecture-3/">
+        <h2 class="post-title">
+            2. 兩種價值觀的故事
+        </h2>
+        <h3 class="post-subtitle">
+            履行參與戰鬥的責任
+        </h3>
+        <div class="post-content-preview">
+            兩種價值觀的故事
+行為 / 架構
+每個軟體系統都會為利益相關者提供兩種不同價值
+
+
+行為 (behavior)
+利用 功能規格 (functional specification) 或 需求文件 (requirements document) 來達到這一點，然後實作程式碼，並且除錯。
+可悲的是：許多程式設計師認為這是們的全部工作。
+
+
+結構 (structure)
+軟體 (software ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2018-09-05
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/09/04/2018-09-04-CleanArchitecture-2/">
+        <h2 class="post-title">
+            1. 什麼是設計與結構
+        </h2>
+        <h3 class="post-subtitle">
+            想要走得快，唯一的方式就是要走的好
+        </h3>
+        <div class="post-content-preview">
+            第一章：什麼是設計與結構
+「架構」常被使用在高層次的事物中，與較低層次的細節脫節，而「設計」往往似乎隱含了較低層次的結構與決策。但作者舉了設計新家的建築師為例子，什麼是架構？外觀、挑高和空間及房間佈局。而每個插座、燈的開關和燈座在哪，是低層次的設計。
+
+我看到了支持所有高層決策的全部細節
+也看到了這些低層次的細節和高層次的決策都是房子整體設計的一部分
+
+這兩者之間是沒有明確的界限的
+目標
+
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2018-09-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/09/03/2018-09-03-CleanArchitecture-1/">
+        <h2 class="post-title">
+            筆記心得 Clean Architecture 無瑕的程式碼 0
+        </h2>
+        <h3 class="post-subtitle">
+            ！！！
+        </h3>
+        <div class="post-content-preview">
+            上週老爸老媽來幫忙小朋友開學，無暇記錄一些東西。
+
+Clean Architecture 這本七月初買到現在，才看了一半。不過時間有限，若能持之以恆地看完，就很開心了！
+老實說我沒有看過 Bob 大叔前幾個作品，之所以會看這本，是因為我對程式開發的架構設計充滿了想像。
+如何保有變動的彈性？
+過去 app 的開發，還只是維持 [開案] &gt; [討論/設計] &gt; [實作] &gt; [......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2018-09-03
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/08/22/2018-08-22-Restructure-2/">
+        <h2 class="post-title">
+            Restructure 思考脈絡 (2)
+        </h2>
+        <h3 class="post-subtitle">
+            Restructure 思考脈絡 (2)
+        </h3>
+        <div class="post-content-preview">
+            上一篇： Restructure 思考脈絡 1
+延續上一篇的題目，在漸進式地增加功能：
+
+
+將多個來源的資料，合併成一份資料後匯入系統
+資料內有多筆細目，細目數量可能很大，且 process 的 memory 大小有限制
+資料使用其中一欄做排序，由小到大，且唯一，
+
+如果遇到值一樣的欄位，則取用在 array 中比較前面的 source
+
+資料來源支援另一種輸入形式，輸入資料為與上次最後輸入......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2018-08-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#system analysis" title="system analysis">system analysis</a>
+            
+              <a href="/tags/#system design" title="system design">system design</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/archives/3/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+            </div>
+
+          <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+            
+            <a href="/tags/#life" title="life" rel="16">life</a>
+            
+        
+            
+            <a href="/tags/#programming" title="programming" rel="12">programming</a>
+            
+        
+            
+            <a href="/tags/#testable" title="testable" rel="5">testable</a>
+            
+        
+            
+            <a href="/tags/#CleanArchitecture" title="CleanArchitecture" rel="13">CleanArchitecture</a>
+            
+        
+            
+            <a href="/tags/#swift" title="swift" rel="3">swift</a>
+            
+        
+            
+            <a href="/tags/#iOS" title="iOS" rel="3">iOS</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#wwdc2017" title="wwdc2017" rel="3">wwdc2017</a>
+            
+        
+            
+        
+            
+        
+            
+            <a href="/tags/#system analysis" title="system analysis" rel="3">system analysis</a>
+            
+        
+            
+            <a href="/tags/#system design" title="system design" rel="3">system design</a>
+            
+        
+            
+            <a href="/tags/#structure" title="structure" rel="14">structure</a>
+            
+        
+            
+            <a href="/tags/#讀書心得" title="讀書心得" rel="14">讀書心得</a>
+            
+        
+            
+        
+            
+        
+    </div>
+</section>
+
+        <hr>
+    
+        
+  <h5>RECENT POSTS</h3>
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/2020/06/05/2020-06-05-resume/">重啟</a>
+        </li>
+      
+        <li>
+          <a href="/2019/06/01/2019-06-01-new-travel/">轉</a>
+        </li>
+      
+        <li>
+          <a href="/2019/05/06/2019-05-06-CleanArchitecture-13/">11. DIP: 依賴反向原則</a>
+        </li>
+      
+        <li>
+          <a href="/2019/04/12/2019-4-12-CleanArchitechure-12/">10. 介面隔離原則</a>
+        </li>
+      
+        <li>
+          <a href="/2019/03/21/2019-03-13-CleanArchitechure-11/">9. LSP: Liskov 替換原則</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        <hr>
+    
+        
+    <h5>ARCHIVES</h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+
+        <hr>
+    
+        <!-- Categories -->
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/WillsborK">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/willsbor.kang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/willsbor">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/willsbor-kang-82784061">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; willsbor Kang 2021 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" target="_blank" rel="noopener">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://willsbor.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://willsbor.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

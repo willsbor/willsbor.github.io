@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Note about programming, iOS, swift and software engineering">
+    <meta name="keyword"  content="iOS, swift, SOLID, testing">
+    <!-- <link rel="shortcut icon" href="/img/ironman-draw.png"> -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          程式碼的維護 - ThinkAboutProgramming | 想起程式
+        
+    </title>
+
+    <link rel="canonical" href="https://willsbor.github.io/2018/12/08/2018-12-08-ArchitectureDesign/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('../../../../img/pexels-photo-302280.jpeg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#life" title="life">life</a>
+                            
+                              <a class="tag" href="/tags/#programming" title="programming">programming</a>
+                            
+                              <a class="tag" href="/tags/#structure" title="structure">structure</a>
+                            
+                        </div>
+                        <h1>程式碼的維護</h1>
+                        <h2 class="subheading">重新學習</h2>
+                        <span class="meta">
+                            Posted by willsbor Kang on
+                            2018-12-08
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">想起程式</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2><span id="為什麼要這樣寫">為什麼要這樣寫？</span></h2>
+<p>某日下午，和同事討論了一下我發的 PR 內容。</p>
+<p>「看程式碼，我是能理解你想要幹嘛，不過『未來維護的人』看得懂嗎？」這樣說道…</p>
+<p>「你這樣設計未來可能會發生…的問題」</p>
+<h2><span id="每種設計方式都有他的問題還有可能是相同的問題">每種設計方式都有他的問題，還有可能是相同的問題</span></h2>
+<p>我的程式理念，慢慢的往依賴能切分乾淨靠近，但是相對於 structured programming 的直覺使用，依賴反轉過後，尋找實際實作者時，往往會出現難以接受的事實。</p>
+<p>例如：<code>iOS 中拿取 bundle identifier</code></p>
+<p>基本上你可以透過 <code>類 system function</code> 拿到。以 structured programming 下，開發者會設計一個 Utils 的物件，包裝這個功能，然後對外宣稱，「如果要拿 bundle identifier，問 Utils 就好了。」</p>
+<p>恩，合理！一個 system 的功能找一個包裝好 system 的工具 (Utils) 來取得。</p>
+<p>但是，如果是用 object-oriented programming 的角度呢？他的主要的描述反而是：「我這個 manager 想要拿到 bundle identifier，只要能提供給我就行。」「Utils 正好能提供，你問他吧！」</p>
+<blockquote>
+<p>同樣的目的，但是不同的解釋</p>
+</blockquote>
+<p>看起來好像沒什麼，但延伸出了什麼問題呢？</p>
+<h3><span id="變數為什麼都放給同一個物件管理用-shared-instance-分別取用不是很好嗎">變數為什麼都放給同一個物件管理，用 shared instance 分別取用不是很好嗎？</span></h3>
+<p>如果不同屬性的變數，會分開成不同的物件去控制。</p>
+<p>ex:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Utils</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> osVersion: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuyTicketFunction</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">let</span> shared = <span class="type">BuyTicketFunction</span>()</span><br><span class="line">	<span class="keyword">var</span> serivceEnabled: <span class="type">Bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">displayBuyTicketView</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">guard</span> <span class="type">Utils</span>.shared.osVersion &gt; <span class="number">10</span> <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">guard</span> <span class="type">BuyTicketFunction</span>.shared.serivceEnabled <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果有一個功能要同時看系統版本，以及後端服務是否有開啟功能，最直接的寫法會長上面這樣。</p>
+<p>參數分別給不同的 manager 管理，看起來也很合理！</p>
+<p>如果以 <code>UIViewController</code> 的角度去描述呢？</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Utils</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> osVersion: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuyTicketFunction</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">let</span> shared = <span class="type">BuyTicketFunction</span>()</span><br><span class="line">	<span class="keyword">var</span> serivceEnabled: <span class="type">Bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Controller</span>: <span class="title">ViewControlling</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> buyTicketSerivceEnabled: <span class="type">Bool</span> &#123;</span><br><span class="line">		<span class="keyword">guard</span> <span class="type">Utils</span>.shared.osVersion &gt; <span class="number">10</span> <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">guard</span> <span class="type">BuyTicketFunction</span>.shared.serivceEnabled <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ViewControlling</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> buyTicketSerivceEnabled: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> controller: <span class="type">ViewControlling</span> = <span class="type">Controller</span>()</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">displayBuyTicketView</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">guard</span> controller.buyTicketSerivceEnabled <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>「誰能告訴我 <code>buyTicketSerivceEnabled</code> ？」如果條件參數分別是兩個物件提供，那必定要寫一個中介的物件來實踐這件事情。因此就會多一個 <code>Controller</code>。</p>
+<p>想像上 UIViewController 應該會有自己的 ViewControlling，且會有一個自己實作的 Controller 物件，這個物件應該就是「商業邏輯」的一部份。</p>
+<p>但是當 UIViewController 變多了呢？就可能會產生多個 Controller，每個 Controller 都包含了一部分「商業邏輯」。</p>
+<p>但悲傷的是，商業功能通常會在多個頁面都沾染一些。如果每個 Controller 都是各自實現，那就會造成「code repeat yourself」。為了避免這樣的事情，又會把功能抽出來，進化成一個物件。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Utils</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> osVersion: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuyTicketFunction</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">let</span> shared = <span class="type">BuyTicketFunction</span>()</span><br><span class="line">	<span class="keyword">var</span> serivceEnabled: <span class="type">Bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProjectBuyTicketManager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> buyTicketSerivceEnabledAndOSSupported: <span class="type">Bool</span> &#123;</span><br><span class="line">		<span class="keyword">guard</span> <span class="type">Utils</span>.shared.osVersion &gt; <span class="number">10</span> <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">guard</span> <span class="type">BuyTicketFunction</span>.shared.serivceEnabled <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Controller</span>: <span class="title">ViewControlling</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> buyTicketSerivceEnabled: <span class="type">Bool</span> &#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="type">ProjectBuyTicketManager</span>.shared.buyTicketSerivceEnabledAndOSSupported</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ViewControlling</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> buyTicketSerivceEnabled: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> controller: <span class="type">ViewControlling</span> = <span class="type">Controller</span>()</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">displayBuyTicketView</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">guard</span> controller.buyTicketSerivceEnabled <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這裡多了一個 <code>ProjectBuyTicketManager</code>，並且多了一個 <code>func</code> 叫做 <code>buyTicketSerivceEnabledAndOSSupported</code>，因為他比 <code>buyTicketSerivceEnabled</code> 還考慮了 <code>OS</code>。如果名稱沒有區別，那未來的維護者可能會誤會用底層的 <code>BuyTicketFunction</code> 就好了。</p>
+<h3><span id="增加新的頁面收納同群的商業邏輯">增加新的頁面，收納同群的商業邏輯</span></h3>
+<p>因此若有多個 <code>UIViewController</code> 跟 Buy Ticket 有關，<br>
+-「如果商業邏輯相同」則可以共用 <code>ProjectBuyTicketManager</code><br>
+-「如果略有不同、大部分相同」，則可以整理 <code>ProjectBuyTicketManager</code> 內的邏輯，共用相同的區塊<br>
+-「如果商業邏輯不同」… 大哥，這樣應該就是完全不同的程式碼了吧。</p>
+<p>這就是 UI 可以先考量自身的使用情境，用單一 <code>protocol</code> 下的 <code>function</code> 的描述，然後再詢問一個商業邏輯的實作，獲得真正的功能。</p>
+<h2><span id="為了測試-為了維護">為了測試、為了維護</span></h2>
+<blockquote>
+<p>商業功能不會永遠不變</p>
+</blockquote>
+<p>變化是在所難免，即使多一個小小的邏輯，也有可能需要調整資料結構。但重點是，調整的當下，你有多少的信心之前的功能還是對的？</p>
+<p>理想上可以單單針對 UI 物件作單元測試 (Unit Test)，Mock 商業邏輯層，來達到驗證頁面正確。<br>
+因此：</p>
+<ul>
+<li>單單調整 <code>UIViewController</code> 物件的內容，接口 <code>UIViewControlling</code> 沒有變化，那基本上可以確保原來的功能還是會正確的。</li>
+<li>當商業邏輯層 (<code>ProjectBuyTicketManager</code>) 內容有變化時，而最終 UI 上發現有誤時，<br>
+就可以先初步排除 UI 層內容的問題，而可以先從「商業邏輯層」和「商業邏輯實作 UIViewControlling」的這兩部分下手。</li>
+</ul>
+<p>這裡只是先描述切分外層依賴的概念，範例裡的「商業邏輯層」用了許多 shared instance，會大大影響程式的可測性。但是一樣可以用 <code>protocol</code> 做相依性的切離，這裡先不贅述了。</p>
+<blockquote>
+<p>測試不能保證不會出現未知的錯誤，但是能強化已知項目的穩健度</p>
+</blockquote>
+<p>PS. 最近設計的 iOS Whoscall SDK 慢慢完成了。這樣的結構、想法，在最後做功能微調和完成 <code>TODO</code> 上有不少的幫助。有空會再把這些心得記錄下來！</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/02/14/2019-02-14-CleanArchitecture-7/" data-toggle="tooltip" data-placement="top" title="6. 函數式程式設計">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/11/29/2018-11-29-CleanArchitecture-6/" data-toggle="tooltip" data-placement="top" title="5. 物件導向程式設計">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">為什麼要這樣寫？</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">每種設計方式都有他的問題，還有可能是相同的問題</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">變數為什麼都放給同一個物件管理，用 shared instance 分別取用不是很好嗎？</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">增加新的頁面，收納同群的商業邏輯</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">為了測試、為了維護</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#life" title="life">life</a>
+                        
+                          <a class="tag" href="/tags/#programming" title="programming">programming</a>
+                        
+                          <a class="tag" href="/tags/#structure" title="structure">structure</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "thinkabout-1";
+    var disqus_identifier = "https://willsbor.github.io/2018/12/08/2018-12-08-ArchitectureDesign/";
+    var disqus_url = "https://willsbor.github.io/2018/12/08/2018-12-08-ArchitectureDesign/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/WillsborK">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/willsbor.kang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/willsbor">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/willsbor-kang-82784061">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; willsbor Kang 2021 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" target="_blank" rel="noopener">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://willsbor.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://willsbor.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

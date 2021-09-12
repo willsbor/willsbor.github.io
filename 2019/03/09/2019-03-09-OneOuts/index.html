@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Note about programming, iOS, swift and software engineering">
+    <meta name="keyword"  content="iOS, swift, SOLID, testing">
+    <!-- <link rel="shortcut icon" href="/img/ironman-draw.png"> -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          漫畫：超智遊戲 (雷) - ThinkAboutProgramming | 想起程式
+        
+    </title>
+
+    <link rel="canonical" href="https://willsbor.github.io/2019/03/09/2019-03-09-OneOuts/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('../../../../img/pexels-photo-302280.jpeg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#life" title="life">life</a>
+                            
+                              <a class="tag" href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+                            
+                              <a class="tag" href="/tags/#comicbook" title="comicbook">comicbook</a>
+                            
+                        </div>
+                        <h1>漫畫：超智遊戲 (雷)</h1>
+                        <h2 class="subheading">比賽的勝負都只是場賭博</h2>
+                        <span class="meta">
+                            Posted by willsbor Kang on
+                            2019-03-09
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">想起程式</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1><span id="超智遊戲-one-outs">超智遊戲 (One Outs)</span></h1>
+<p>我妹介紹我看這套漫畫，之前就有聽同事說，而最近偷點時間看完他。故事的緊張刺激，抓握得不錯。</p>
+<p>這是個邪道漫畫，所以你已經可以預測他會成功的完成謀略，不過還是會想要看他完成的過程。</p>
+<p>尤其對他對於普世價值的詮釋，像是「真正的團隊精神」，不禁讓我想一想，如果真的在這樣的團隊，是令人期待的呀！</p>
+<h2><span id="內容">內容</span></h2>
+<p>這套漫畫被戲稱「西索打棒球」</p>
+<p>主角渡久地東亞，是一個棒球賭徒，他不只賭比賽的勝負，而是利用他惡魔般的洞察力、精神力，以及心理操縱的策略，來左右棒球比賽。</p>
+<p>為了達成目標，展現出他的毒舌，毫不客氣地在對手上製造弱點。在投打對席上，觀察打者的細微變化，讓即使不快的直球，也無法有效地被擊出。戰略上，還能誘使敵人過分關注他，讓比賽即時沒有他上場，也能讓他的同伴有相當的優勢。</p>
+<p>除此之外，重要的是，他能洞察每個同伴的特性，導正或激發出他們的特質。何謂「勝負心」、如何解除「心理限制」</p>
+<p>當然角色設定上，他還是有一定的棒球強度，加上過分的心理學等級，產生了這位超強的賭徒。</p>
+<h2><span id="低語">低語</span></h2>
+<blockquote>
+<p>「棒球就是一場賭博，棒球本來就不公平、不合理。所以，能夠接受這種不合理，並且反過來利用它的人，才是這種運動所渴求的人才。」</p>
+</blockquote>
+<p>是否能「看透事實的真相」在這部漫畫裡成為了主體。看穿打者的打擊習慣，用言語預告投球內容打擊敵人的心理。看出暗號被竊取，如何反過來利用。當局面陷入不利時，不是拼命彌補，而是回過頭來看，什麼叫做「比賽成立」。因此，他的對手只看到表面的勝負，反而會被他看透的事實意圖痛擊。</p>
+<h3><span id="團隊精神">團隊精神</span></h3>
+<p>一般討論的團隊精神：</p>
+<blockquote>
+<p>「就是集合球隊各個成員的力量，以產生更大的力量。」</p>
+</blockquote>
+<p>對他來說是『大錯特錯』。漫畫中何謂真正的團隊精神：</p>
+<p>裡面有一幕：渡久地實施了 L Ticket 和 MVP Ticket 的制度，且把二軍的管平拉上一軍，而這個管平卻很積極地跑壘，相對卻製造機會讓隊員回去得分，</p>
+<p>事後管平回答：</p>
+<blockquote>
+<p>「我只是在想『要出風頭』！要憑自己令球隊勝出，得到全部的 MVP Ticket」<br>
+「才不是大家合力，而是『由我來』才對吧！『由我來』帶領球隊獲得勝利呀！」<br>
+「『由我來實現』只要所有球員都這樣想，你們不覺得那是非常驚人的力量嗎？」</p>
+</blockquote>
+<p>對！他很積極的出鋒頭跑壘，卻也帶給團隊有好處。</p>
+<p>這樣的棒球觀，還真的是驚人。但也可能正好是棒球運動的模式，所以互相的強力發揮並不會干擾太多。但如果是足球，可能就不能這樣了吧ＸＤ（笑）</p>
+<p>但重點是，「團隊目標」與「個人目標」是相吻合的，先不論合作手段，或溝通細節，當團隊的人都能有『由我來』的衝勁，必然會想辦法減少自己的失敗，補足自己的能力，如果以獲勝為前提，也就不會貶低、陷害隊友，也會互相幫忙或提升吧！</p>
+<p>不過這是個漫畫，裡面有很多的人性操弄，但真實世界裡，還是跟當時的人、事、物有絕對的關係，不會那麼如意(<s>你不會變成西索</s>)。而且前提是，團隊也要給予夠大的胡蘿蔔，像是漫畫中 L Ticket &amp; MVP Ticket 的制度。不然理想的空談，應該還是很難轉化為動力。</p>
+<blockquote>
+<p>對人生豪賭一場，蠻勵志的漫畫（疑！</p>
+</blockquote>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/03/11/2019-03-04-CleanArchitecture/" data-toggle="tooltip" data-placement="top" title="8. OCP 開放-封閉原則">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/02/25/2019-02-25-think-about-rquest/" data-toggle="tooltip" data-placement="top" title="流程上，面對開發環境的需求">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">超智遊戲 (One Outs)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">內容</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">低語</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">團隊精神</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#life" title="life">life</a>
+                        
+                          <a class="tag" href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+                        
+                          <a class="tag" href="/tags/#comicbook" title="comicbook">comicbook</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "thinkabout-1";
+    var disqus_identifier = "https://willsbor.github.io/2019/03/09/2019-03-09-OneOuts/";
+    var disqus_url = "https://willsbor.github.io/2019/03/09/2019-03-09-OneOuts/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/WillsborK">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/willsbor.kang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/willsbor">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/willsbor-kang-82784061">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; willsbor Kang 2021 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" target="_blank" rel="noopener">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://willsbor.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://willsbor.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
