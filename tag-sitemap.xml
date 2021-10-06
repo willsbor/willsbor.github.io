@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://willsbor.github.io/tags/architecture/</loc>
+        <lastmod>2021-09-12T15:04:58.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/wwdc2017/</loc>
+        <lastmod>2021-09-12T15:04:58.427Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/hyper/</loc>
+        <lastmod>2021-09-12T15:04:58.428Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/Object-C/</loc>
+        <lastmod>2021-09-12T15:04:58.428Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/system-analysis/</loc>
+        <lastmod>2021-09-12T15:04:58.430Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/system-design/</loc>
+        <lastmod>2021-09-12T15:04:58.430Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/request/</loc>
+        <lastmod>2021-09-12T15:04:58.450Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/comicbook/</loc>
+        <lastmod>2021-09-12T15:04:58.452Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/structure/</loc>
+        <lastmod>2021-09-12T15:04:58.455Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/%25E8%25AE%2580%25E6%259B%25B8%25E5%25BF%2583%25E5%25BE%2597/</loc>
+        <lastmod>2021-09-12T15:04:58.455Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/life/</loc>
+        <lastmod>2021-09-12T15:04:58.456Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/testable/</loc>
+        <lastmod>2021-09-15T00:55:16.775Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/swift/</loc>
+        <lastmod>2021-09-15T00:55:16.775Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/CleanArchitecture/</loc>
+        <lastmod>2021-09-15T00:55:16.775Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/Generic/</loc>
+        <lastmod>2021-09-15T00:55:16.775Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/refactor/</loc>
+        <lastmod>2021-09-15T00:55:16.775Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/Flutter/</loc>
+        <lastmod>2021-09-24T01:48:05.694Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/dart/</loc>
+        <lastmod>2021-09-24T01:48:05.694Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/programming/</loc>
+        <lastmod>2021-10-06T01:41:38.843Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/CryptoKit/</loc>
+        <lastmod>2021-10-06T01:41:38.843Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/iOS/</loc>
+        <lastmod>2021-10-06T01:41:38.843Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/Note/</loc>
+        <lastmod>2021-10-06T01:41:38.843Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/ECDSA/</loc>
+        <lastmod>2021-10-06T01:41:38.843Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/ECDH/</loc>
+        <lastmod>2021-10-06T01:41:38.843Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://willsbor.github.io/tags/BiometryProtected/</loc>
+        <lastmod>2021-10-06T01:41:38.843Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+</urlset>
+<!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator -->

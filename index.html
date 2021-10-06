@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Note about programming, iOS, swift and software engineering">
+    <meta name="keyword"  content="iOS, swift, SOLID, testing">
+    <!-- <link rel="shortcut icon" href="/img/ironman-draw.png"> -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          ThinkAboutProgramming | 想起程式
+        
+    </title>
+
+    <link rel="canonical" href="https://willsbor.github.io/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+<link rel="stylesheet" href="/css/beantech.min.css">
+
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/toc.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/header_img/pexels-photo-824161.jpeg') 
+            /*config*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="site-heading">
+                        <h1>想起程式</h1>
+                        <!--<hr class="small">-->
+                        <span class="subheading">人是一根會思考的蘆葦</span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">想起程式</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2021/10/06/2021-10-6-apple-cryptokit/">
+        <h2 class="post-title">
+            Apple CryptoKit 學習筆記
+        </h2>
+        <h3 class="post-subtitle">
+            在做生物辨識的功能時遇到的學習筆記
+        </h3>
+        <div class="post-content-preview">
+            生物辨識主要的目標是取代像是 OTP，可以做一個可信任的身份認證。
+服務的流程大致上是：
+
+APP 先產生 private/public key
+APP 將 public key 傳到 BE
+
+當要使用身份認證時
+
+APP 打 API 取得一個 BE 產生的 nonce-1
+APP 產生一個 nonce-2
+APP 用 nonce-1 + nonce-2 + 講好的規則 用 private ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2021-10-06
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#programming" title="programming">programming</a>
+            
+              <a href="/tags/#CryptoKit" title="CryptoKit">CryptoKit</a>
+            
+              <a href="/tags/#iOS" title="iOS">iOS</a>
+            
+              <a href="/tags/#Note" title="Note">Note</a>
+            
+              <a href="/tags/#ECDSA" title="ECDSA">ECDSA</a>
+            
+              <a href="/tags/#ECDH" title="ECDH">ECDH</a>
+            
+              <a href="/tags/#BiometryProtected" title="BiometryProtected">BiometryProtected</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/09/24/2021-9-24-Flutter-1/">
+        <h2 class="post-title">
+            Flutter 學習筆記
+        </h2>
+        <h3 class="post-subtitle">
+            筆記，起步走
+        </h3>
+        <div class="post-content-preview">
+            稍微看 Flutter 有一段時間了。
+也蠻認同一個想法，
+
+雖然跨平台語言不能解決平台上實作細節的差異，
+但就考慮純粹「功能邏輯」或「商業邏輯」的共用，
+似乎就有蠻大的效益！
+
+原本想要直接研究 iOS 和 Flutter 之間的轉接。
+但發現好像不先搞懂 Flutter 的設計邏輯，確實寫作起來有點綁手綁腳。
+安裝
+這部分我忘了紀錄，但目前應該在網路上都還容易找到文章。
+開專案
+同上。（......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2021-09-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#programming" title="programming">programming</a>
+            
+              <a href="/tags/#Flutter" title="Flutter">Flutter</a>
+            
+              <a href="/tags/#dart" title="dart">dart</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/09/15/2020-08-09-refactor-with-generics/">
+        <h2 class="post-title">
+            重構與泛型 Generic
+        </h2>
+        <h3 class="post-subtitle">
+            Generic 在重構上能幫什麼忙呢？
+        </h3>
+        <div class="post-content-preview">
+            2020 年初我在一個專案中，要做一件麻煩的事情。
+需求是
+
+要把原本一頁式的頁面 (Single UINavigationController) 換成 TabBarController 的樣式。
+
+看似平凡無奇的描述中，因為 Legacy code 和 跨區域開發者 的組成，產生了不少惡魔。但是也因此，讓我對於 Generic 有了新解。
+表象問題
+這種「頁面架構」的需求變換，通常伴隨著一......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2021-09-15
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#programming" title="programming">programming</a>
+            
+              <a href="/tags/#testable" title="testable">testable</a>
+            
+              <a href="/tags/#swift" title="swift">swift</a>
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+              <a href="/tags/#Generic" title="Generic">Generic</a>
+            
+              <a href="/tags/#refactor" title="refactor">refactor</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/06/05/2020-06-05-resume/">
+        <h2 class="post-title">
+            重啟
+        </h2>
+        <h3 class="post-subtitle">
+            一年後的適應，重新尋找自我的時間
+        </h3>
+        <div class="post-content-preview">
+            看到一年的文章，還被我放在 draft 中，也就順手想把他 publish 了。
+在 ShopBack 一年來，有許多新的體驗，工作也比較上手了;
+在小孩與家人的時間分配上，可能因為他們長大了吧，也有獲得比較好的平衡。
+所以，看看每天是不是可以在抽點時間，再多紀錄分享有趣的程式寫作（笑）
+想到有想分享的題目：
+
+重構實務！當遇到一個隕石般的坑洞
+溝通無用！當有人可以在 GitHub 上 co......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2020-06-05
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#life" title="life">life</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/01/2019-06-01-new-travel/">
+        <h2 class="post-title">
+            轉
+        </h2>
+        <h3 class="post-subtitle">
+            就在今天，我將成為了兩天的無業人士
+        </h3>
+        <div class="post-content-preview">
+            
+如何描述這五年的旅程？
+
+因緣際會下學習了 iOS app 的撰寫，輾轉進入了這家台灣新創的龍頭！
+學習了對於產品、服務的創造，體驗了人與人相處的歡樂與心酸，交織成這 5 年的血淚。
+工作
+和大家一起工作的時光很快樂，當產品上架，當看到使用者大量下載，當看到 IAP、AD 的錢開始往上攀升，努力終於獲得了些許回報。
+1y: 最早的使用者體驗
+
+God feeling
+
+真的，以現在的角度看......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2019-06-01
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#life" title="life">life</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/06/2019-05-06-CleanArchitecture-13/">
+        <h2 class="post-title">
+            11. DIP: 依賴反向原則
+        </h2>
+        <h3 class="post-subtitle">
+            反著走，是為了走更長遠的路
+        </h3>
+        <div class="post-content-preview">
+            DIP: 依賴反向原則
+
+最靈活的系統是「原始碼的依賴關係只涉及抽象不涉及具體」的那些系統
+
+最理想，是沒有具體的東西該被依賴，像是使用 use, import, include 之類的，只有抽象的介面被包含進來。但是如果「全」照這個想法去做，是不切實際的，因為軟體系統必須依賴許多具體的機制，例如 Swift 中的 String, Int … 試圖將它變成抽象的，是不切實際的，也是不可避免的......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2019-05-06
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/04/12/2019-4-12-CleanArchitechure-12/">
+        <h2 class="post-title">
+            10. 介面隔離原則
+        </h2>
+        <h3 class="post-subtitle">
+            不要在包包內放你不需要的東西
+        </h3>
+        <div class="post-content-preview">
+            介面隔離原則
+ISP (Interface Segregation Principle)
+
+假設 User1 只用了 op1()、User2 只用了 op2()、User3 只用了 op3()
+在目前這樣的依賴且是靜態語言的狀況下，User1 並不使用 op2() &amp; op3()，但是在原始碼上卻依賴的他們。所以當修改了 op2() 時，仍然需要重新編譯 User1，儘管 op1()......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2019-04-12
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/21/2019-03-13-CleanArchitechure-11/">
+        <h2 class="post-title">
+            9. LSP: Liskov 替換原則
+        </h2>
+        <h3 class="post-subtitle">
+            替身！影分身之術！
+        </h3>
+        <div class="post-content-preview">
+            LSP: Liskov 替換原則
+在 1988 年， Brabara Liskov 寫下子型態的定義：
+
+若對型態 S 的每一個物件 O1，都存在一個型態為 T 的物件 O2，使得在所有針對 T 編寫的程式 P 中，用 O1 替換 O2 後，程式 P 的行為功能不變，則 S 是 T 的子型態。
+
+指導繼承的使用
+
+此設計符合 LSP，要計算授權費用時，不會以任何方式依賴於他使用的兩個子型態(......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2019-03-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/14/2019-03-14-WorkingForWhat/">
+        <h2 class="post-title">
+            創業者？自由工作者！
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            創業者？自由工作者！
+早上看到 aPo 老闆的文章，不禁讓我反思一些事情。
+前幾天跟一個朋友聊，其中他問了我一個問題
+「你喜歡 Team work 還是自己工作？」他問
+「我應該會選擇 Team work 吧！團隊能做的事情會比較多，比較大，可以有不同觀感或面向…」我這樣回答著
+其實我沒有覺得回答得很好，應該說，我沒有想過這個問題，當下就直接依照目前的狀況講了出來。
+直到我看到了破老闆的心得......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2019-03-14
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#life" title="life">life</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/03/11/2019-03-04-CleanArchitecture/">
+        <h2 class="post-title">
+            8. OCP 開放-封閉原則
+        </h2>
+        <h3 class="post-subtitle">
+            一個軟體製品應該對於擴展是開放的，但對於修改是封閉的
+        </h3>
+        <div class="post-content-preview">
+            OCP: 開放-封閉原則
+軟體的行為應該是可以擴展的，而且在擴充功能的同時，是沒有必要修改原來的地方
+簡單的想法是，當增加新功能時， git diff 不會有或僅一兩行的「減少」行數，剩下都是增加行數
+一個構想實驗
+
+試想一下，有一個財務系統，要在網頁上顯示資料，而後來利益相關者需要此系統也能將資訊印出來做報告。顯然增加了新的功能，那需要修改修改多少舊程式碼呢？
+首先透過應用 SRP，可以導......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by willsbor Kang on
+            2019-03-11
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#structure" title="structure">structure</a>
+            
+              <a href="/tags/#讀書心得" title="讀書心得">讀書心得</a>
+            
+              <a href="/tags/#CleanArchitecture" title="CleanArchitecture">CleanArchitecture</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    
+        <li class="next">
+            <a href="/archives/2/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+            </div>
+
+          <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+            
+            <a href="/tags/#life" title="life" rel="16">life</a>
+            
+        
+            
+            <a href="/tags/#programming" title="programming" rel="15">programming</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#iOS" title="iOS" rel="4">iOS</a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+            <a href="/tags/#testable" title="testable" rel="6">testable</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#swift" title="swift" rel="4">swift</a>
+            
+        
+            
+            <a href="/tags/#wwdc2017" title="wwdc2017" rel="3">wwdc2017</a>
+            
+        
+            
+        
+            
+        
+            
+            <a href="/tags/#system analysis" title="system analysis" rel="3">system analysis</a>
+            
+        
+            
+            <a href="/tags/#system design" title="system design" rel="3">system design</a>
+            
+        
+            
+            <a href="/tags/#structure" title="structure" rel="14">structure</a>
+            
+        
+            
+            <a href="/tags/#讀書心得" title="讀書心得" rel="14">讀書心得</a>
+            
+        
+            
+            <a href="/tags/#CleanArchitecture" title="CleanArchitecture" rel="14">CleanArchitecture</a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+</section>
+
+        <hr>
+    
+        
+  <h5>RECENT POSTS</h3>
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/2021/10/06/2021-10-6-apple-cryptokit/">Apple CryptoKit 學習筆記</a>
+        </li>
+      
+        <li>
+          <a href="/2021/09/24/2021-9-24-Flutter-1/">Flutter 學習筆記</a>
+        </li>
+      
+        <li>
+          <a href="/2021/09/15/2020-08-09-refactor-with-generics/">重構與泛型 Generic</a>
+        </li>
+      
+        <li>
+          <a href="/2020/06/05/2020-06-05-resume/">重啟</a>
+        </li>
+      
+        <li>
+          <a href="/2019/06/01/2019-06-01-new-travel/">轉</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        <hr>
+    
+        
+    <h5>ARCHIVES</h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+
+        <hr>
+    
+        <!-- Categories -->
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/WillsborK">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/willsbor.kang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/willsbor">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/willsbor-kang-82784061">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; willsbor Kang 2021 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" target="_blank" rel="noopener">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://willsbor.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://willsbor.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
